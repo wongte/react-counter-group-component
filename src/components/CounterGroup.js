@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Counter from './Counter'
+import { INITIAL_NUMBER_OF_COUNTER } from '../constants/constants'
 
 export default class CounterGroup extends Component {
     constructor(props) {
@@ -9,7 +10,7 @@ export default class CounterGroup extends Component {
         this.initArray = this.initArray.bind(this)
         this.onChange = this.onChange.bind(this)
         this.state = {
-             numberOfCounters: 2
+             numberOfCounters: INITIAL_NUMBER_OF_COUNTER
         }
     }
     
