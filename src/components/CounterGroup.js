@@ -18,8 +18,12 @@ export default class CounterGroup extends Component {
 
     onChange(event) {
         let value = event.target.value
+        let result = 0
+        if (value.length > 0 && parseInt(value) > 0) {
+            result = parseInt(value)
+        }
         this.setState(prevState => ({
-            numberOfCounters: value.length > 0 ? parseInt(value) : 0
+            numberOfCounters: result
         }))
     }
 
