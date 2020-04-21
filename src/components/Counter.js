@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class Counter extends Component {
     constructor(props) {
@@ -27,12 +27,12 @@ class Counter extends Component {
             <span>{this.state.counter}</span>
             <button onClick={this.decrementCounter}>-</button>
         </div>
-        );
+        )
     }
 }
 
 Counter.propTypes = {
 
-};
+}
 
-export default Counter;
+export default Counter
