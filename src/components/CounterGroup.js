@@ -8,7 +8,7 @@ export default class CounterGroup extends Component {
         super(props)
     
         this.onChange = this.onChange.bind(this)
-        this.onCounterChanged = this.onCounterChanged.bind(this)
+        this.onCounterValueChanged = this.onCounterValueChanged.bind(this)
         this.state = {
              numberOfCounters: 0,
              total: 0
@@ -30,7 +30,7 @@ export default class CounterGroup extends Component {
         }))
     }
 
-    onCounterChanged(delta) {
+    onCounterValueChanged(delta) {
         this.setState(prevState => ({
             total: prevState.total + delta
         }))
@@ -43,7 +43,7 @@ export default class CounterGroup extends Component {
             <label>Number of Counters: </label><input value={this.state.numberOfCounters} onChange={this.onChange}/>
                 {
                     [...Array(this.state.numberOfCounters)]
-                        .map((_, index) => <Counter key={index} onValueChange={this.onCounterChanged}/>)
+                        .map((_, index) => <Counter key={index} onValueChange={this.onCounterValueChanged}/>)
                 }
             </div>
         )
