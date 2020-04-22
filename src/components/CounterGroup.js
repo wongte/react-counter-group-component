@@ -20,7 +20,7 @@ export default class CounterGroup extends Component {
   componentDidMount() {
     CounterApi.getCounter().then((result) => {
       this.setState({ numberOfCounters: result.data.size })
-    })
+    }).catch(error => console.log(error.response.data) )
   }
 
   onChange(event) {
@@ -31,7 +31,7 @@ export default class CounterGroup extends Component {
     }
     CounterApi.updateCounter(result).then((response) => {
       this.setState({ numberOfCounters: response.data.size })
-    })
+    }).catch(error => console.log(error.response.data) )
   }
 
   onCounterValueChanged(delta) {

@@ -7,7 +7,8 @@ class CounterApi {
     return axios.get(COUNTER_API_URL)
   }
   static updateCounter(size) {
-    return axios.put(COUNTER_API_URL + '/1', { size })
+    let id = 1
+    return axios.put(COUNTER_API_URL + '/' + id, { size })
   }
 }
 
