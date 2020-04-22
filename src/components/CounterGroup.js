@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Counter from './Counter'
 import CounterApi from '../apis/CounterApi'
+import { INITIAL_NUMBER_OF_COUNTER, KEY_ENTER, INITIAL_VALUE_OF_COUNTER } from '../constants/constants'
 
 export default class CounterGroup extends Component {
   constructor(props) {
@@ -13,9 +14,9 @@ export default class CounterGroup extends Component {
       this
     )
     this.state = {
-      numberOfCounters: 0,
-      valueInInput: '0',
-      total: 0,
+      numberOfCounters: INITIAL_NUMBER_OF_COUNTER,
+      valueInInput: INITIAL_NUMBER_OF_COUNTER,
+      total: INITIAL_NUMBER_OF_COUNTER * INITIAL_VALUE_OF_COUNTER,
     }
   }
 

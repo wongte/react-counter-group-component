@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { INITIAL_NUMBER_OF_COUNTER } from '../constants/constants'
+import { INITIAL_VALUE_OF_COUNTER } from '../constants/constants'
 
 class Counter extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class Counter extends Component {
     this.decrementCounter = this.decrementCounter.bind(this)
 
     this.state = {
-      counter: INITIAL_NUMBER_OF_COUNTER,
+      counter: INITIAL_VALUE_OF_COUNTER,
     }
   }
 
