@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Counter from './Counter'
-import { INITIAL_NUMBER_OF_COUNTER } from '../constants/constants'
+import CounterApi from '../apis/CounterApi'
 
 export default class CounterGroup extends Component {
   constructor(props) {
@@ -16,6 +16,12 @@ export default class CounterGroup extends Component {
   }
 
   static propTypes = {}
+
+  componentDidMount() {
+    CounterApi.getCounter().then(result => {
+      this.setState({ numberOfCounters: result.data.size })
+    })
+  }
 
   onChange(event) {
     let value = event.target.value
