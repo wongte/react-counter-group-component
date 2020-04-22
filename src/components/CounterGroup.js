@@ -7,7 +7,7 @@ export default class CounterGroup extends Component {
   constructor(props) {
     super(props)
 
-    this.onChange = this.onChange.bind(this)
+    this.onInputNumberCounterChange = this.onInputNumberCounterChange.bind(this)
     this.onCounterValueChanged = this.onCounterValueChanged.bind(this)
     this.state = {
       numberOfCounters: 0,
@@ -23,7 +23,7 @@ export default class CounterGroup extends Component {
     }).catch(error => console.log(error.response.data) )
   }
 
-  onChange(event) {
+  onInputNumberCounterChange(event) {
     let value = event.target.value
     let result = 0
     if (value.length > 0 && parseInt(value) > 0) {
@@ -47,7 +47,7 @@ export default class CounterGroup extends Component {
         </span>
         <br></br>
         <label>Number of Counters: </label>
-        <input value={this.state.numberOfCounters} onChange={this.onChange} />
+        <input value={this.state.numberOfCounters} onChange={this.onInputNumberCounterChange} />
         {[...Array(this.state.numberOfCounters)].map((_, index) => (
           <Counter key={index} onValueChange={this.onCounterValueChanged} />
         ))}
