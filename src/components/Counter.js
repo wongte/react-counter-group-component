@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { INITIAL_VALUE_OF_COUNTER } from '../constants/constants'
+import { Button, Row, Col, Space } from 'antd'
+import { PlusOutlined, MinusOutlined } from '@ant-design/icons'
 
 class Counter extends Component {
   constructor(props) {
@@ -38,11 +40,25 @@ class Counter extends Component {
 
   render() {
     return (
-      <div>
-        <button onClick={this.incrementCounter}>+</button>
-        <span>{this.state.counter}</span>
-        <button onClick={this.decrementCounter}>-</button>
-      </div>
+      <Row>
+        <Col span={24}>
+          <Space>
+            <Button
+              shape="circle"
+              type="primary"
+              onClick={this.incrementCounter}
+              icon={<PlusOutlined />}
+            />
+            <span>{this.state.counter}</span>
+            <Button
+              shape="circle"
+              type="primary"
+              onClick={this.decrementCounter}
+              icon={<MinusOutlined />}
+            />
+          </Space>
+        </Col>
+      </Row>
     )
   }
 }
