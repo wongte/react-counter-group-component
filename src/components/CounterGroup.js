@@ -30,16 +30,12 @@ export default class CounterGroup extends Component {
       result = parseInt(value)
     }
     CounterApi.updateCounter(result).then((response) => {
-      this.setState((prevState) => ({
-        numberOfCounters: response.data.size,
-      }))
+      this.setState({ numberOfCounters: response.data.size })
     })
   }
 
   onCounterValueChanged(delta) {
-    this.setState((prevState) => ({
-      total: prevState.total + delta,
-    }))
+    this.setState(prevState => ({ total: prevState.total + delta }))
   }
 
   render() {
