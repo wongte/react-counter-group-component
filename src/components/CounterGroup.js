@@ -9,8 +9,12 @@ export default class CounterGroup extends Component {
 
     this.onInputNumberCounterChange = this.onInputNumberCounterChange.bind(this)
     this.onCounterValueChanged = this.onCounterValueChanged.bind(this)
+    this.onInputNumberCounterKeyPress = this.onInputNumberCounterKeyPress.bind(
+      this
+    )
     this.state = {
       numberOfCounters: 0,
+      valueInInput: '0',
       total: 0,
     }
   }
@@ -18,24 +22,41 @@ export default class CounterGroup extends Component {
   static propTypes = {}
 
   componentDidMount() {
-    CounterApi.getCounter().then((result) => {
-      this.setState({ numberOfCounters: result.data.size })
-    }).catch(error => console.log(error.response.data) )
+    CounterApi.getCounter()
+      .then((result) => {
+        this.setState({
+          numberOfCounters: result.data.size,
+          valueInInput: result.data.size,
+        })
+      })
+      .catch((error) => console.log(error.response.data))
   }
 
   onInputNumberCounterChange(event) {
-    let value = event.target.value
-    let result = 0
-    if (value.length > 0 && parseInt(value) > 0) {
-      result = parseInt(value)
+    this.setState({ valueInInput: event.target.value })
+  }
+
+  onInputNumberCounterKeyPress(event) {
+    if (event.key === 'Enter') {
+      this.onInputNumberCounterEnter()
     }
-    CounterApi.updateCounter(result).then((response) => {
-      this.setState({ numberOfCounters: response.data.size })
-    }).catch(error => console.log(error.response.data) )
+  }
+
+  onInputNumberCounterEnter() {
+      let value = this.state.valueInInput
+      let result = 0
+      if (value.length > 0 && parseInt(value) > 0) {
+        result = parseInt(value)
+      }
+      CounterApi.updateCounter(result)
+        .then((response) => {
+          this.setState({ numberOfCounters: result })
+        })
+        .catch((error) => console.log(error.response.data))
   }
 
   onCounterValueChanged(delta) {
-    this.setState(prevState => ({ total: prevState.total + delta }))
+    this.setState((prevState) => ({ total: prevState.total + delta }))
   }
 
   render() {
@@ -47,7 +68,11 @@ export default class CounterGroup extends Component {
         </span>
         <br></br>
         <label>Number of Counters: </label>
-        <input value={this.state.numberOfCounters} onChange={this.onInputNumberCounterChange} />
+        <input
+          value={this.state.valueInInput}
+          onChange={this.onInputNumberCounterChange}
+          onKeyPress={this.onInputNumberCounterKeyPress}
+        />
         {[...Array(this.state.numberOfCounters)].map((_, index) => (
           <Counter key={index} onValueChange={this.onCounterValueChanged} />
         ))}
