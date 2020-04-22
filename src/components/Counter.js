@@ -20,6 +20,14 @@ class Counter extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.onValueChange(-this.state.counter)
+  }
+
+  componentDidMount() {
+    this.props.onValueChange(this.state.counter)
+  }
+
   incrementCounter() {
     this.setState((prevState) => ({ counter: prevState.counter + 1 }))
   }

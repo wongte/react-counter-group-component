@@ -25,7 +25,6 @@ export default class CounterGroup extends Component {
     }
     this.setState((prevState) => ({
       numberOfCounters: result,
-      total: result * INITIAL_NUMBER_OF_COUNTER,
     }))
   }
 
