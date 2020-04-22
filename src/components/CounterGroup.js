@@ -18,7 +18,7 @@ export default class CounterGroup extends Component {
   static propTypes = {}
 
   componentDidMount() {
-    CounterApi.getCounter().then(result => {
+    CounterApi.getCounter().then((result) => {
       this.setState({ numberOfCounters: result.data.size })
     })
   }
@@ -29,9 +29,11 @@ export default class CounterGroup extends Component {
     if (value.length > 0 && parseInt(value) > 0) {
       result = parseInt(value)
     }
-    this.setState((prevState) => ({
-      numberOfCounters: result,
-    }))
+    CounterApi.updateCounter(result).then((response) => {
+      this.setState((prevState) => ({
+        numberOfCounters: response.data.size,
+      }))
+    })
   }
 
   onCounterValueChanged(delta) {
